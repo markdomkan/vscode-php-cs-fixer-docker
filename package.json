@@ -5,6 +5,7 @@
   "version": "0.0.1",
   "publisher": "markdomkan",
   "author": "markdomkan",
+  "repository": "https://github.com/markdomkan/vscode-php-cs-fixer-docker",
   "engines": {
     "vscode": "^1.52.0"
   },
