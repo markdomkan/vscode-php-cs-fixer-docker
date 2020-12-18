@@ -1,0 +1,63 @@
+{
+  "name": "php-cs-docker",
+  "displayName": "php-cs-docker",
+  "description": "Php cs fixer executed inside your docker container",
+  "version": "0.0.1",
+  "publisher": "markdomkan",
+  "author": "markdomkan",
+  "engines": {
+    "vscode": "^1.52.0"
+  },
+  "categories": [
+    "Formatters",
+    "Linters",
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:php"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "php",
+        "extensions": [
+          ".php"
+        ]
+      }
+    ],
+
+    "configuration":[
+      {
+        "title": "PHP CS Docker",
+        "properties": {
+          "php-cs-docker.containerName": {
+            "type": ["string", "null"],
+            "default": null,
+            "description": "Specifies the name of the container to run the php-cs-fixer"
+          }
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/dockerode": "^3.2.1",
+    "@types/node": "^12.11.7",
+    "@types/vscode": "^1.52.0",
+    "@typescript-eslint/eslint-plugin": "^4.9.0",
+    "@typescript-eslint/parser": "^4.9.0",
+    "eslint": "^7.15.0",
+    "typescript": "^4.1.2"
+  },
+  "dependencies": {
+    "dockerode": "^3.2.1"
+  }
+}
