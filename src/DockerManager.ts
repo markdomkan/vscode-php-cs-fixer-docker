@@ -20,7 +20,9 @@ export default class DockerManager {
     }
     const container = this.containers.find(
       (container) =>
-        container.Names.find((name) => name === containerName) !== null
+        container.Names.find((name) =>
+          new RegExp(`${containerName}`).test(name)
+        ) !== undefined
     );
 
     if (!container) {

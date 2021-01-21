@@ -2,7 +2,8 @@
   "name": "php-cs-docker",
   "displayName": "php-cs-docker",
   "description": "Php cs fixer executed inside your docker container",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "license": "MIT",
   "publisher": "markdomkan",
   "author": "markdomkan",
   "repository": "https://github.com/markdomkan/vscode-php-cs-fixer-docker",
@@ -27,13 +28,15 @@
         ]
       }
     ],
-
-    "configuration":[
+    "configuration": [
       {
         "title": "PHP CS Docker",
         "properties": {
           "php-cs-docker.containerName": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "default": null,
             "description": "Specifies the name of the container to run the php-cs-fixer"
           }
@@ -56,7 +59,10 @@
     "@typescript-eslint/eslint-plugin": "^4.9.0",
     "@typescript-eslint/parser": "^4.9.0",
     "eslint": "^7.15.0",
-    "typescript": "^4.1.2"
+    "prettier": "^2.2.1",
+    "prettier-eslint": "^12.0.0",
+    "typescript": "^4.1.2",
+    "vsce": "^1.84.0"
   },
   "dependencies": {
     "dockerode": "^3.2.1"
