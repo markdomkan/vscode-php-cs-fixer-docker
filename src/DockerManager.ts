@@ -48,7 +48,6 @@ export default class DockerManager {
     container: DockerContainer,
     filePath: string
   ): string {
-    filePath = `/host_mnt${filePath}`;
     let path = null;
     container.mounts.some((mount) => {
       const result = filePath.replace(mount.source, "");
