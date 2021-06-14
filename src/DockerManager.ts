@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { resolve } from "dns";
 import Docker from "dockerode";
 import { DockerContainer } from "./interfaces";
 
 export default class DockerManager {
   private containers: Docker.ContainerInfo[] | null = null;
 
-  constructor(private docker: Docker) {}
+  constructor(private docker: Docker) { }
 
   public async getContainerByName(
     containerName: String
@@ -20,9 +19,7 @@ export default class DockerManager {
     }
     const container = this.containers.find(
       (container) =>
-        container.Names.find((name) =>
-          new RegExp(`${containerName}`).test(name)
-        ) !== undefined
+        container.Names.find((name) => containerName === name || `/${containerName}` === name) !== undefined
     );
 
     if (!container) {
@@ -50,7 +47,13 @@ export default class DockerManager {
   ): string {
     let path = null;
     container.mounts.some((mount) => {
+
+      if (mount.source.startsWith("/host_mnt")) {
+        filePath = `/host_mnt${filePath}`;
+      }
+
       const result = filePath.replace(mount.source, "");
+
       if (result !== filePath) {
         path = `${mount.destination}${result}`;
         return true;
